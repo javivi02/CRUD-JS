@@ -1,4 +1,5 @@
 import modal from "bootstrap/js/src/modal";
+import {lista} from "../../index";
 
 const body = document.body;
 let tbody, referenciaEdicionModal, modalNombre, modalApellido, modalUser, modalPassword, actualizar, modalEdit,
@@ -37,7 +38,8 @@ const crearTabla = () => {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="editCerrar">Close</button>
-                <button type="button" class="btn btn-primary" id="actualizar">Actualizar</button>
+                <button type="button" class="btn btn-primary" id="actualizar" data-backdrop="false" 
+                data-bs-dismiss="modal">Actualizar</button>
               </div>
             </div>
           </div>
@@ -79,7 +81,7 @@ const crearTabla = () => {
     actualizar = document.querySelector('#actualizar');
     modalCerrar = document.querySelector('#editCerrar');
     formularioedit = document.querySelector('#editformulario');
-    //modalEdit = new bootstrap.Modal(document.getElementById('editRegistro'));
+    modalEdit = new bootstrap.Modal(document.getElementById('editRegistro'));
 
 }
 
@@ -133,15 +135,23 @@ const eventos = () => {
 
     actualizar.addEventListener('click', ()=>{
 
+        //console.log(referenciaEdicionModal);
         const row = document.getElementById(referenciaEdicionModal);
+        const usuario = lista.buscarUsuario(referenciaEdicionModal);
 
-        row.children[0].textContent =modalNombre.value;
-        row.children[1].textContent =modalApellido.value;
-        row.children[2].textContent =modalUser.value;
-        row.children[3].textContent =modalPassword.value;
+        row.children[0].innerText = modalNombre.value;
+        usuario.nombre = modalNombre.value;
 
-        borrarDatosModal();
-        //modalEdit.toggle();
+        row.children[1].innerText = modalApellido.value;
+        usuario.apellidos = modalApellido.value;
+
+        row.children[2].innerText = modalUser.value;
+        usuario.user = modalUser.value;
+
+        row.children[3].innerText = modalPassword.value;
+        usuario.password = modalPassword.value;
+
+        modalEdit.toggle();
     });
 
     modalCerrar.addEventListener('click', ()=> borrarDatosModal());

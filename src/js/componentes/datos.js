@@ -1,5 +1,6 @@
 import Usuario from "../clases/Usuario";
 import {crearRegistro} from "./tabla";
+import {lista} from "../../index";
 
 const body = document.body;
 let registrar, formulario, modalNew, cerrar;
@@ -37,7 +38,8 @@ const creaDatos = () => {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cerrar">Close</button>
-                <button type="button" class="btn btn-primary" id="registrar">Registrar</button>
+                <button type="button" class="btn btn-primary" id="registrar" data-backdrop="false" 
+                data-bs-dismiss="modal">Registrar</button>
               </div>
             </div>
           </div>
@@ -46,7 +48,7 @@ const creaDatos = () => {
         <br>
         
         <button type="button" class="btn btn-primary btn-block" id="add" data-bs-toggle="modal" 
-        data-bs-target="#nuevoRegistro">Nuevo registro</button>
+        data-bs-target="#nuevoRegistro" >Nuevo registro</button>
         
     `;
 
@@ -72,8 +74,10 @@ const eventos = () => {
         const data = new FormData(formulario);
         const usuario = new Usuario(data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
         crearRegistro(usuario);
+        lista.agregarUsuario(usuario);
+        console.log(lista);
         borrarDatosModal();
-        //modalNew.hide();
+        modalNew.toggle();
         console.log('aqui')
 
     });
