@@ -5,7 +5,7 @@ import {tabla} from "./js/componentes/tabla";
 
 navbar();
 datos();
-//tabla();
+tabla();
 
 
 

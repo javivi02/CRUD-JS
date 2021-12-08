@@ -8,7 +8,7 @@ const creaDatos = () => {
 
     const html = `
 
-        <div class="modal fade" id="nuevoRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+       <div class="modal fade" id="nuevoRegistro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -69,11 +69,11 @@ const eventos = () => {
 
     registrar.addEventListener('click', ()=>{
 
-        /*const data = new FormData(formulario);
+        const data = new FormData(formulario);
         const usuario = new Usuario(data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
         crearRegistro(usuario);
-        borrarDatosModal();*/
-        modalNew.hide();
+        borrarDatosModal();
+        //modalNew.hide();
         console.log('aqui')
 
     });

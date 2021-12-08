@@ -141,7 +141,7 @@ const eventos = () => {
         row.children[3].textContent =modalPassword.value;
 
         borrarDatosModal();
-        modalEdit.toggle();
+        //modalEdit.toggle();
     });
 
     modalCerrar.addEventListener('click', ()=> borrarDatosModal());
