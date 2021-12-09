@@ -1,5 +1,6 @@
 import modal from "bootstrap/js/src/modal";
 import {lista} from "../../index";
+import * as CRUD from "../providers/crud_usuarios";
 
 const body = document.body;
 let tbody, referenciaEdicionModal, modalNombre, modalApellido, modalUser, modalPassword, actualizar, modalEdit,
@@ -93,7 +94,7 @@ export const crearRegistro = (usuario) => {
         <tr>
             <td>${usuario.nombre}</td>
             <td>${usuario.apellidos}</td>
-            <td>${usuario.user}</td>
+            <td>${usuario.usuario}</td>
             <td>${usuario.password}</td>
             <td class="text-right"></td>
         </tr>
@@ -118,7 +119,7 @@ export const crearRegistro = (usuario) => {
 
         modalNombre.value = usuario.nombre;
         modalApellido.value = usuario.apellidos;
-        modalUser.value = usuario.user;
+        modalUser.value = usuario.usuario;
         modalPassword.value = usuario.password;
 
         referenciaEdicionModal = id;
@@ -146,7 +147,7 @@ const eventos = () => {
         usuario.apellidos = modalApellido.value;
 
         row.children[2].innerText = modalUser.value;
-        usuario.user = modalUser.value;
+        usuario.usuario = modalUser.value;
 
         row.children[3].innerText = modalPassword.value;
         usuario.password = modalPassword.value;

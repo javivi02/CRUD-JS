@@ -1,6 +1,7 @@
 import Usuario from "../clases/Usuario";
 import {crearRegistro} from "./tabla";
 import {lista} from "../../index";
+import * as CRUD from "../providers/crud_usuarios";
 
 const body = document.body;
 let registrar, formulario, modalNew, cerrar;
@@ -95,8 +96,18 @@ const borrarDatosModal = () => {
 
 }
 
+const cargaDatos = async () => {
+
+    const usuarios = await CRUD.getUsuarios();
+    for (const usuario of usuarios) {
+        console.log(usuario);
+        crearRegistro(usuario);
+    }
+}
+
 export const datos = () => {
   creaDatos();
   eventos();
+  cargaDatos();
 
 }
