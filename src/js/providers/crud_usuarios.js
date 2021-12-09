@@ -1,11 +1,11 @@
-const urlCRUD = 'http://localhost:8090/api/usuario';
+const urlCRUD = 'http://172.28.1.137:8090/api/usuario';
 
 
 export const getUsuarios = async () => {
 
     try {
 
-        const respuesta = await fetch('http://localhost:8090/api/usuarios');
+        const respuesta = await fetch('http://172.28.1.137:8090/api/usuarios');
         if(!respuesta.ok) throw 'No se ha podido realizar la peticion';
         //console.log(datos);
         return await respuesta.json();

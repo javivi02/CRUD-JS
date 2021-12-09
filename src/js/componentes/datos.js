@@ -105,11 +105,11 @@ const cargaDatos = async () => {
 
     const usuarios = await CRUD.getUsuarios();
     for (const usuario of usuarios) {
-        //console.log(usuario);
         lista.agregarUsuario(usuario);
-        //console.log(lista);
         crearRegistro(usuario);
     }
+
+    console.log(lista);
 
     IDUsuario = usuarios[usuarios.length -1].id + 1;
     console.log(`El siguiente ID es: ${IDUsuario}`)

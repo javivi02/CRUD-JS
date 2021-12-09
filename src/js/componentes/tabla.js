@@ -128,8 +128,8 @@ export const crearRegistro = (usuario) => {
     buttonEliminar.addEventListener('click', ()=>{
 
         document.getElementById(id).remove();
-        lista.eliminarUsuario(id);
         CRUD.borrarUsuario(id).then(console.log);
+        lista.eliminarUsuario(usuario.id);
     });
 
 }
