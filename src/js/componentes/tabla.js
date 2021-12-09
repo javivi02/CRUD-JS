@@ -130,6 +130,7 @@ export const crearRegistro = (usuario) => {
         document.getElementById(id).remove();
         CRUD.borrarUsuario(id).then(console.log);
         lista.eliminarUsuario(usuario.id);
+        console.log(lista);
     });
 
 }
@@ -161,6 +162,7 @@ const eventos = () => {
             password: usuario.password
 
         }).then(console.log);
+        console.log(lista);
 
         modalEdit.toggle();
     });
