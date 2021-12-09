@@ -128,6 +128,8 @@ export const crearRegistro = (usuario) => {
     buttonEliminar.addEventListener('click', ()=>{
 
         document.getElementById(id).remove();
+        lista.eliminarUsuario(id);
+        CRUD.borrarUsuario(id).then(console.log);
     });
 
 }
@@ -151,6 +153,14 @@ const eventos = () => {
 
         row.children[3].innerText = modalPassword.value;
         usuario.password = modalPassword.value;
+
+        CRUD.actualizarUsuario(referenciaEdicionModal, {
+            nombre: usuario.nombre,
+            apellidos: usuario.apellidos,
+            usuario: usuario.usuario,
+            password: usuario.password
+
+        }).then(console.log);
 
         modalEdit.toggle();
     });

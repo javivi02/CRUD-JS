@@ -4,7 +4,7 @@ import {lista} from "../../index";
 import * as CRUD from "../providers/crud_usuarios";
 
 const body = document.body;
-let registrar, formulario, modalNew, cerrar;
+let registrar, formulario, modalNew, cerrar, IDUsuario;
 
 const creaDatos = () => {
 
@@ -73,9 +73,15 @@ const eventos = () => {
     registrar.addEventListener('click', ()=>{
 
         const data = new FormData(formulario);
-        const usuario = new Usuario(data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
+        const usuario = new Usuario(IDUsuario, data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
         crearRegistro(usuario);
         lista.agregarUsuario(usuario);
+        CRUD.crearUsuario({
+            nombre: data.get('nombre'),
+            apellidos: data.get('apellidos'),
+            usuario: data.get('user'),
+            password: data.get('password')
+        }).then(console.log);
         console.log(lista);
         borrarDatosModal();
         modalNew.toggle();
@@ -99,18 +105,19 @@ const cargaDatos = async () => {
 
     const usuarios = await CRUD.getUsuarios();
     for (const usuario of usuarios) {
-        console.log(usuario);
+        //console.log(usuario);
         lista.agregarUsuario(usuario);
-        console.log(lista);
+        //console.log(lista);
         crearRegistro(usuario);
     }
 
-    console.log(`El siguiente ID es: ${usuarios[usuarios.length -1].id + 1}`)
+    IDUsuario = usuarios[usuarios.length -1].id + 1;
+    console.log(`El siguiente ID es: ${IDUsuario}`)
 }
 
 export const datos = () => {
+  cargaDatos();
   creaDatos();
   eventos();
-  cargaDatos();
 
 }

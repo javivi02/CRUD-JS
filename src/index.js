@@ -11,6 +11,13 @@ tabla();
 
 export const lista = new ListaUsuarios();
 
-
+/*
+CRUD.crearUsuario({
+    nombre: 'Luis',
+    apellidos: 'Palacios',
+    usuario: 'elPalace',
+    password: '000000'
+}).then(console.log);
+*/
 
 
