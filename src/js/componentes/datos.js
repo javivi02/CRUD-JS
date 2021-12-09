@@ -72,7 +72,7 @@ const eventos = () => {
     registrar.addEventListener('click', ()=>{
 
         const data = new FormData(formulario);
-        const usuario = new Usuario(IDUsuario, data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
+        const usuario = new Usuario(data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
         crearRegistro(usuario);
         CRUD.crearUsuario({
             nombre: data.get('nombre'),
@@ -80,7 +80,6 @@ const eventos = () => {
             usuario: data.get('user'),
             password: data.get('password')
         }).then(console.log);
-        console.log(lista);
         borrarDatosModal();
         modalNew.toggle();
 
