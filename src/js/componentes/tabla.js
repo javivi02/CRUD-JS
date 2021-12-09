@@ -1,5 +1,4 @@
 import modal from "bootstrap/js/src/modal";
-import {lista} from "../../index";
 import * as CRUD from "../providers/crud_usuarios";
 
 const body = document.body;
@@ -115,12 +114,14 @@ export const crearRegistro = (usuario) => {
 
     let id = row.getAttribute('id');
 
-    buttonEditar.addEventListener('click', ()=>{
+    buttonEditar.addEventListener('click', async ()=>{
 
-        modalNombre.value = usuario.nombre;
-        modalApellido.value = usuario.apellidos;
-        modalUser.value = usuario.usuario;
-        modalPassword.value = usuario.password;
+        const user = await CRUD.getUsuario(id);
+
+        modalNombre.value = user.nombre;
+        modalApellido.value = user.apellidos;
+        modalUser.value = user.usuario;
+        modalPassword.value = user.password;
 
         referenciaEdicionModal = id;
     });
@@ -129,19 +130,16 @@ export const crearRegistro = (usuario) => {
 
         document.getElementById(id).remove();
         CRUD.borrarUsuario(id).then(console.log);
-        lista.eliminarUsuario(usuario.id);
-        console.log(lista);
     });
 
 }
 
 const eventos = () => {
 
-    actualizar.addEventListener('click', ()=>{
+    actualizar.addEventListener('click', async ()=>{
 
-        //console.log(referenciaEdicionModal);
         const row = document.getElementById(referenciaEdicionModal);
-        const usuario = lista.buscarUsuario(referenciaEdicionModal);
+        const usuario = await CRUD.getUsuario(referenciaEdicionModal);
 
         row.children[0].innerText = modalNombre.value;
         usuario.nombre = modalNombre.value;
@@ -162,7 +160,6 @@ const eventos = () => {
             password: usuario.password
 
         }).then(console.log);
-        console.log(lista);
 
         modalEdit.toggle();
     });

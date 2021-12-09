@@ -21,8 +21,7 @@ const getUsuario = async (id) => {
     try {
 
         const response = await fetch(`${urlCRUD}/${id}`);
-        const {data} = await response.json();
-        return data;
+        return await response.json();
 
     }catch (err){ throw err; }
 

@@ -1,6 +1,5 @@
 import Usuario from "../clases/Usuario";
 import {crearRegistro} from "./tabla";
-import {lista} from "../../index";
 import * as CRUD from "../providers/crud_usuarios";
 
 const body = document.body;
@@ -75,7 +74,6 @@ const eventos = () => {
         const data = new FormData(formulario);
         const usuario = new Usuario(IDUsuario, data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
         crearRegistro(usuario);
-        lista.agregarUsuario(usuario);
         CRUD.crearUsuario({
             nombre: data.get('nombre'),
             apellidos: data.get('apellidos'),
@@ -105,11 +103,8 @@ const cargaDatos = async () => {
 
     const usuarios = await CRUD.getUsuarios();
     for (const usuario of usuarios) {
-        lista.agregarUsuario(usuario);
         crearRegistro(usuario);
     }
-
-    console.log(lista);
 
     IDUsuario = usuarios[usuarios.length -1].id + 1;
     console.log(`El siguiente ID es: ${IDUsuario}`)
