@@ -79,7 +79,6 @@ const eventos = () => {
         console.log(lista);
         borrarDatosModal();
         modalNew.toggle();
-        console.log('aqui')
 
     });
 
@@ -101,8 +100,12 @@ const cargaDatos = async () => {
     const usuarios = await CRUD.getUsuarios();
     for (const usuario of usuarios) {
         console.log(usuario);
+        lista.agregarUsuario(usuario);
+        console.log(lista);
         crearRegistro(usuario);
     }
+
+    console.log(`El siguiente ID es: ${usuarios[usuarios.length -1].id + 1}`)
 }
 
 export const datos = () => {
