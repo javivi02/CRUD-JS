@@ -176,6 +176,16 @@ const borrarDatosModal = () => {
 
 }
 
+/*const eliminarRow = () => {
+
+    const rows = tbody.getElementsByTagName('tr');
+    console.log(rows)
+    for (const row of rows) {
+        console.log(row);
+    }
+
+}*/
+
 
 export const tabla = () => {
     crearTabla();

@@ -72,16 +72,20 @@ const eventos = () => {
     registrar.addEventListener('click', ()=>{
 
         const data = new FormData(formulario);
-        const usuario = new Usuario(data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
-        crearRegistro(usuario);
+        const usuario = new Usuario( data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
         CRUD.crearUsuario({
             nombre: data.get('nombre'),
             apellidos: data.get('apellidos'),
             usuario: data.get('user'),
             password: data.get('password')
         }).then(console.log);
+        crearRegistro(usuario);
         borrarDatosModal();
+        eliminaRows()
         modalNew.toggle();
+        setTimeout(()=>{
+        cargaDatos();
+        }, 50);
 
     });
 
@@ -105,9 +109,20 @@ const cargaDatos = async () => {
         crearRegistro(usuario);
     }
 
-    IDUsuario = usuarios[usuarios.length -1].id + 1;
-    console.log(`El siguiente ID es: ${IDUsuario}`)
+    //IDUsuario = usuarios[usuarios.length -1].id + 1;
+
+    //eliminaRows();
+
 }
+
+const eliminaRows = () => {
+
+    const [, ...rows] = document.getElementsByTagName('tr');
+    for (const row of rows) {
+        row.remove();
+    }
+}
+
 
 export const datos = () => {
   cargaDatos();
