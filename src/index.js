@@ -9,6 +9,9 @@ datos();
 tabla();
 
 
+
+
+
 /*CRUD.getUsuario(2)
     .then(console.log)
     .catch(console.log);*/

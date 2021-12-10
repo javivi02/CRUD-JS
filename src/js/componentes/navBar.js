@@ -61,16 +61,37 @@ const creaNavBar = () => {
 
 const eventos = () => {
 
-    limpiar.addEventListener('click', ()=>{
-        console.log('Limpiar');
-    });
+    limpiar.addEventListener('click', ()=> buscar.value = "");
 
-    buscar.addEventListener('click', ()=>{
+    buscar.addEventListener('keyup', ()=>{
 
-        console.log('Buscar');
+        const valor = buscar.value;
+        busqueda(valor);
+
     });
 
 }
+
+const busqueda = (valor) => {
+
+    const [, ...rows] = document.getElementsByTagName('tr');
+
+    for (const row of rows) {
+
+        let ocultarFila = false;
+
+        // Almaceno cada td en variables, utilizando la desectruturacion de objetos.
+        const [nombre, apellido, usuario] = row.children;
+
+        ocultarFila = !(nombre.textContent.toLowerCase().includes(valor)
+            || apellido.textContent.toLowerCase().includes(valor)
+            || usuario.textContent.toLowerCase().includes(valor));
+
+        if (ocultarFila) row.classList.add('d-none');
+        else row.classList.remove('d-none');
+    }
+}
+
 
 export const navbar = () => {
     creaNavBar();

@@ -72,20 +72,26 @@ const eventos = () => {
     registrar.addEventListener('click', ()=>{
 
         const data = new FormData(formulario);
+        // Creo objeto sin ID para respetar el que ponga mysql. Despues recargo los datos para recuperarlo
         const usuario = new Usuario( data.get('nombre'), data.get('apellidos'), data.get('user'), data.get('password'));
+
         CRUD.crearUsuario({
             nombre: data.get('nombre'),
             apellidos: data.get('apellidos'),
             usuario: data.get('user'),
             password: data.get('password')
         }).then(console.log);
+
         crearRegistro(usuario);
+
         borrarDatosModal();
         eliminaRows()
         modalNew.toggle();
+
+        // Hago un pequeño stop para dar tiempo a la base de datos ingestar el registro y recargar la tabla
         setTimeout(()=>{
         cargaDatos();
-        }, 50);
+        }, 10);
 
     });
 
