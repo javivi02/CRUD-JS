@@ -61,7 +61,17 @@ const creaNavBar = () => {
 
 const eventos = () => {
 
-    limpiar.addEventListener('click', ()=> buscar.value = "");
+    limpiar.addEventListener('click', ()=> {
+
+        buscar.value = "";
+
+        const [, ...rows] = document.getElementsByTagName('tr');
+
+        for (const row of rows) {
+            row.classList.remove('d-none');
+        }
+
+    });
 
     buscar.addEventListener('keyup', ()=>{
 
