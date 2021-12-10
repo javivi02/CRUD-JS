@@ -91,7 +91,7 @@ const eventos = () => {
         // Hago un pequeño stop para dar tiempo a la base de datos ingestar el registro y recargar la tabla
         setTimeout(()=>{
         cargaDatos();
-        }, 10);
+        }, 60);
 
     });
 
