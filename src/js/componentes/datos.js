@@ -110,7 +110,7 @@ const borrarDatosModal = () => {
 
 const cargaDatos = async () => {
 
-    const usuarios = await CRUD.getUsuarios();
+    const usuarios = await CRUD.getUsuarios().catch(console.log);
     for (const usuario of usuarios) {
         crearRegistro(usuario);
     }
